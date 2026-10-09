@@ -22,6 +22,15 @@
 body{margin:0;background:#F6F2EA;color:#2B2723;font-family:var(--fs-sans);-webkit-font-smoothing:antialiased;overscroll-behavior:none}
 a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
 *{box-sizing:border-box}
+@media (max-width:700px){
+.m-head{padding:22px 24px!important}
+.m-kick{left:24px!important}
+.m-hero{left:0!important;right:auto!important;width:100%!important;bottom:0!important;padding:56px 24px 104px!important;gap:16px!important;background:linear-gradient(0deg,rgba(250,246,239,.9) 0%,rgba(250,246,239,.7) 65%,rgba(250,246,239,0) 100%)!important}
+.m-hero>span:first-child{font-size:21px!important;max-width:24ch}
+.m-hint{left:24px!important;bottom:30px!important;transform:none!important;align-items:flex-start!important}
+.m-s4{left:24px!important;top:15vh!important;max-width:calc(100vw - 48px)!important}
+.m-s4>span:last-of-type{max-width:30ch}
+}
 </style>
 </helmet>
 <div style="position:relative;background:#F6F2EA">
@@ -30,8 +39,8 @@ a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
   </div>
 
   <div style="position:fixed;inset:0;z-index:2;pointer-events:none">
-    <div style="position:absolute;top:0;left:0;right:0;z-index:3;padding:22px clamp(18px,3vw,40px);display:flex;justify-content:space-between;align-items:baseline;gap:16px">
-      <span ref="{{ kickRef }}" style="position:absolute;left:clamp(18px,3vw,40px);top:28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723;opacity:0">Цветы и композиции</span>
+    <div class="m-head" style="position:absolute;top:0;left:0;right:0;z-index:3;padding:22px clamp(18px,3vw,40px);display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+      <span ref="{{ kickRef }}" class="m-kick" style="position:absolute;left:clamp(18px,3vw,40px);top:28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723;opacity:0">Цветы и композиции</span>
       <span ref="{{ brandRef }}" style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:22px;letter-spacing:-.01em;color:#1F1B18;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 14px rgba(250,246,239,.85);opacity:0">Ателье Флёр</span>
       <div ref="{{ ctaRef }}" style="display:flex;align-items:center;gap:10px;opacity:0">
         <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#2B2723;background:#FBF8F2;padding:4px 8px">Открыто до 22:00</span>
@@ -39,7 +48,7 @@ a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
       </div>
     </div>
 
-    <div ref="{{ heroRef }}" style="position:absolute;right:calc(clamp(18px,4vw,64px) - 44px);bottom:calc(max(11vh,100px) - 44px);width:calc(min(272px,100vw - 2 * clamp(18px,4vw,64px)) + 88px);padding:44px;background:radial-gradient(ellipse 50% 50% at 50% 55%,rgba(250,246,239,.88) 0%,rgba(250,246,239,.62) 58%,rgba(250,246,239,0) 100%);display:flex;flex-direction:column;gap:12px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0">
+    <div ref="{{ heroRef }}" class="m-hero" style="position:absolute;right:calc(clamp(18px,4vw,64px) - 44px);bottom:calc(max(11vh,100px) - 44px);width:calc(min(272px,100vw - 2 * clamp(18px,4vw,64px)) + 88px);padding:44px;background:radial-gradient(ellipse 50% 50% at 50% 55%,rgba(250,246,239,.88) 0%,rgba(250,246,239,.62) 58%,rgba(250,246,239,0) 100%);display:flex;flex-direction:column;gap:12px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0">
       <span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(18px,1.5vw,22px);line-height:1.18;letter-spacing:-.005em;color:#1F1B18;text-wrap:pretty">Авторские букеты с доставкой <em style="color:#7A534D">по всему городу</em></span>
       <span style="height:1px;background:rgba(43,39,35,.3)"></span>
       <div style="display:flex;flex-direction:column;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">
@@ -48,13 +57,13 @@ a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
       </div>
       <button onClick="{{ copyPromo }}" title="Скопировать промокод" style="pointer-events:auto;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#1F1B18;background:none;border:none;border-bottom:1px dashed #1F1B18;padding:2px 0;cursor:pointer;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85)" style-hover="color:#7A534D;border-bottom-color:#7A534D">{{ promoHero }}</button>
     </div>
-    <div ref="{{ hint1Ref }}" style="position:absolute;left:50%;bottom:58px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:#4A443E;white-space:nowrap;opacity:0"><span>Листайте</span><span style="width:1px;height:18px;background:rgba(43,39,35,.4)"></span></div>
+    <div ref="{{ hint1Ref }}" class="m-hint" style="position:absolute;left:50%;bottom:58px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:#4A443E;white-space:nowrap;opacity:0"><span>Листайте</span><span style="width:1px;height:18px;background:rgba(43,39,35,.4)"></span></div>
 
     <div ref="{{ veilRef }}" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,246,239,.9) 0%,rgba(250,246,239,.72) 34%,rgba(250,246,239,0) 62%);opacity:0"></div>
     <div ref="{{ roseRef }}" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">01 · Широкий ассортимент</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Любой наш букет — отдельная работа,<br><em style="color:#7A534D">собранная бережно и с точностью до мелочей.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Работаем только с отборными цветами и везём их напрямую от поставщиков, которым доверяем.</span></div>
     <div ref="{{ line2Ref }}" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">02 · Индивидуальный подход</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Флорист соберёт композицию,<br><em style="color:#7A534D">в которой прозвучит именно ваше чувство.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Выслушаем каждое пожелание и подскажем, какие цветы лучше всего подойдут к вашему поводу.</span></div>
 
-    <div ref="{{ s4Ref }}" style="position:absolute;left:clamp(20px,5vw,72px);top:18vh;display:flex;flex-direction:column;gap:14px;max-width:min(26ch,34vw);opacity:0">
+    <div ref="{{ s4Ref }}" class="m-s4" style="position:absolute;left:clamp(20px,5vw,72px);top:18vh;display:flex;flex-direction:column;gap:14px;max-width:min(26ch,34vw);opacity:0">
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#4A443E">№ 06 · Signature</span>
       <span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,4.6vw,64px);line-height:.95;letter-spacing:-.015em">Композиция<br><em>ателье</em></span>
       <span style="font-size:15px;line-height:1.55;color:#2B2723;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 14px rgba(250,246,239,.85)">Роза, лизиантус, ранункулюс, астильба, эвкалипт. Лён и шёлк.</span>
@@ -299,8 +308,8 @@ class Component extends DCLogic {
     });
     const ph1 = textTex([{ t: 'Свет — первый' }, { t: 'материал.', italic: true }], 220, { w: 1700 });
     const ph2 = textTex([{ t: 'Остальное —' }, { t: 'руками.', italic: true, color: '#8A5F59' }], 220, { w: 1500 });
-    plane(sC, ph1, 2.6, 2.6 / ph1.userData.aspect, 0.7, 0.8, -7, { fog: true });
-    plane(sC, ph2, 2.3, 2.3 / ph2.userData.aspect, -0.5, -0.75, -15.2, { fog: true });
+    const phr = [plane(sC, ph1, 2.6, 2.6 / ph1.userData.aspect, 0.7, 0.8, -7, { fog: true }), plane(sC, ph2, 2.3, 2.3 / ph2.userData.aspect, -0.5, -0.75, -15.2, { fog: true })];
+    phr.forEach((m) => { m.userData.base = m.position.clone(); });
     const pathC = new THREE.CatmullRomCurve3([[0, 0, 2.3], [0.6, 0.1, -1.8], [-0.4, 0, -6.4], [0.5, 0.2, -11], [-0.3, 0.05, -15.6], [0, -0.12, -19.6]].map((a) => new THREE.Vector3(...a)));
 
     // ---------- Scene D · The Object ----------
@@ -386,9 +395,10 @@ class Component extends DCLogic {
       post.uniforms.lR.value = (coarse ? 90 : 120) * dpr;
       const tt = tLeft, narrow = st.aspect < 0.9;
       const halfH = (5 * st.f + 2) * Math.tan((19 * Math.PI) / 180), halfW = halfH * st.aspect, k = (2 * halfW) / W;
-      const mPx = Math.min(64, Math.max(18, W * 0.04));
-      const tw = narrow ? (2 * halfW - 2 * mPx * k) * 0.9 : Math.min(3.3, halfW * 0.78), th = tw / tt.userData.aspect;
-      const bPx = narrow ? 262 : Math.max(H * 0.11, 100);
+      const mPx = narrow && W <= 700 ? 24 : Math.min(64, Math.max(18, W * 0.04));
+      const tw = narrow ? (2 * halfW - 2 * mPx * k) * 0.82 : Math.min(3.3, halfW * 0.78), th = tw / tt.userData.aspect;
+      const heroEl = this.heroRef.current, heroTop = heroEl ? heroEl.getBoundingClientRect().top + parseFloat(getComputedStyle(heroEl).paddingTop) : H - 262;
+      const bPx = narrow ? H - heroTop + 40 : Math.max(H * 0.11, 100);
       const tx = -halfW + mPx * k + tw / 2, ty = 0.7 - halfH + bPx * k + th / 2 - th * 0.1;
       titleA.material.map = tt; titleA.material.needsUpdate = true;
       titleA.position.set(tx, ty, -2.0); titleA.scale.set(tw / 6.6, th / (6.6 / tWide.userData.aspect), 1);
@@ -473,16 +483,19 @@ class Component extends DCLogic {
       macro.material.opacity = 1 - ss(0.12, 0.5, pe);
       // C
       const pc = ss(0, 1, p3);
+      const nC = st.aspect < 0.9, kx = nC ? 0.32 : 1;
       pathC.getPoint(pc, camC.position);
-      camC.position.z += (st.aspect < 1 ? 1.2 : 0);
-      pathC.getPoint(Math.min(1, pc + 0.08), tmp);
+      camC.position.x *= kx; camC.position.z += nC ? 0.2 : (st.aspect < 1 ? 1.2 : 0);
+      pathC.getPoint(Math.min(1, pc + 0.08), tmp); tmp.x *= kx;
       const endLook = frames[5].base;
       tmp.lerp(endLook, ss(0.8, 1, pc));
       if (pc < 0.03) tmp.set(0, 0, -1);
       camC.lookAt(tmp);
       camC.rotateY(-gx * 0.07); camC.rotateX(-gy * 0.04);
       const f3 = frames[3], d3 = camC.position.z - f3.base.z, side = ss(2.5, 8, d3);
-      f3.m.rotation.y = lerp(0.2, 1.0, side); f3.m.position.x = lerp(f3.base.x, -4.6, side);
+      const mxC = [0, -3, 0.35, -1.6, 0.3, 0]; frames.forEach((fr, i) => { fr.m.position.x = nC ? mxC[i] : fr.base.x; });
+      phr.forEach((m, i) => { const b = m.userData.base; m.position.x = nC ? [0, 0.15][i] : b.x; m.position.y = nC ? [1.3, -1.15][i] : b.y; m.scale.setScalar(nC ? 0.6 : 1); });
+      f3.m.rotation.y = lerp(0.2, 1.0, side); f3.m.position.x = lerp(nC ? mxC[3] : f3.base.x, nC ? -3 : -4.6, side);
       // D
       const q = p4; let s0, s1, k;
       if (q < 0.22) { s0 = 0; s1 = 0; k = 0; } else if (q < 0.42) { s0 = 0; s1 = 1; k = ss(0.22, 0.42, q); } else if (q < 0.6) { s0 = 1; s1 = 1; k = 0; } else if (q < 0.8) { s0 = 1; s1 = 2; k = ss(0.6, 0.8, q); } else { s0 = 2; s1 = 2; k = 0; }
@@ -504,7 +517,7 @@ class Component extends DCLogic {
 
       renderer.setRenderTarget(rtA); renderer.render(A, cA);
       if (B) { renderer.setRenderTarget(rtB); renderer.render(B, cB); }
-      const loupeOn = A === sD && !B && st.hold && st.mx >= 0 && g < 960;
+      const loupeOn = !coarse && A === sD && !B && st.hold && st.mx >= 0 && g < 960;
       st.lA += ((loupeOn ? 1 : 0) - st.lA) * (reduce ? 1 : 0.16);
       if (st.lA > 0.01) {
         const ly = st.touch ? st.my - 110 : st.my;
@@ -533,14 +546,18 @@ class Component extends DCLogic {
       const vB = ss(0.44, 0.52, p4) * (1 - ss(0.58, 0.66, p4)), vC = ss(0.82, 0.88, p4) * (1 - ss(955, 975, g));
       setO(this.s4bRef, vB); setO(this.s4cRef, vC);
       setO(this.veilRef, Math.max(vRose, vL2, s4v, vB, vC));
-      setO(this.hint4Ref, ss(745, 780, g) * (1 - ss(0.2, 0.26, p4)) * (st.lA > 0.2 ? 0 : 1));
+      setO(this.hint4Ref, coarse ? 0 : ss(745, 780, g) * (1 - ss(0.2, 0.26, p4)) * (st.lA > 0.2 ? 0 : 1));
       setO(this.endRef, ss(975, 1010, g));
       const vis = [ss(0.02, 0.1, p4) * (1 - ss(0.2, 0.26, p4)), ss(0.02, 0.1, p4) * (1 - ss(0.2, 0.26, p4)), ss(0.04, 0.12, p4) * (1 - ss(0.2, 0.26, p4)), ss(0.82, 0.9, p4) * 0];
       anchors.forEach((a, i) => {
         const el = this.co[i].current; if (!el) return;
         const v = (g > 738 && g < 970) ? vis[i] * (1 - st.lA) : 0;
         el.style.opacity = v.toFixed(3);
-        if (v > 0) { tmp.copy(a).project(camD); el.style.transform = `translate3d(${((tmp.x + 1) / 2 * st.W).toFixed(1)}px, ${((1 - tmp.y) / 2 * st.H - 10).toFixed(1)}px, 0)`; }
+        if (v > 0) {
+          tmp.copy(a).project(camD); const x = (tmp.x + 1) / 2 * st.W, flip = x + el.offsetWidth > st.W - 12;
+          el.style.flexDirection = flip ? 'row-reverse' : '';
+          el.style.transform = `translate3d(${(flip ? x - el.offsetWidth + 3.5 : x).toFixed(1)}px, ${((1 - tmp.y) / 2 * st.H - 10).toFixed(1)}px, 0)`;
+        }
       });
       if (sceneIx !== lastHud) {
         lastHud = sceneIx;
@@ -548,7 +565,7 @@ class Component extends DCLogic {
         if (this.hudAsset.current) { this.hudAsset.current.textContent = hudInfo[sceneIx][1]; this.hudAsset.current.style.display = labels ? '' : 'none'; }
       }
       if (this.hudBar.current) this.hudBar.current.style.width = (cl(g / 960) * 100).toFixed(2) + '%';
-      document.body.style.cursor = A === sD && !B ? 'zoom-in' : '';
+      document.body.style.cursor = !coarse && A === sD && !B ? 'zoom-in' : '';
     };
     this.raf = requestAnimationFrame(frame);
   }
