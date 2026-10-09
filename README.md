@@ -27,6 +27,7 @@ python3 -m http.server 8080
 | `vendor/` | three.js 0.160, React 18.3.1 (локальные копии, внешние CDN не нужны) |
 | `fonts/` | Cormorant Garamond, Onest, IBM Plex Mono и альтернативы, woff2 + `fonts.css` (лицензия OFL) |
 | `assets/images/` | 10 изображений, созданных в Higgsfield, и карта глубины |
+| `assets/images/m/` | Облегчённые копии для телефонов и планшетов (до 2048 px), грузятся вместо оригиналов на сенсорных экранах |
 | `.nojekyll` | Отключает обработку Jekyll на GitHub Pages |
 
 ## Что заменить перед продакшном

@@ -9,6 +9,14 @@
 <meta property="og:description" content="Иммерсивный сайт цветочного ателье: 3D-камера, глубина, покадровая прокрутка.">
 <meta property="og:image" content="assets/images/A01-BG-src.jpg">
 <meta name="theme-color" content="#F6F2EA">
+<link rel="icon" href="data:,">
+<link rel="preload" as="script" href="vendor/three.min.js">
+<link rel="preload" as="image" href="assets/images/m/A01-BG-src.jpg" media="(pointer: coarse)">
+<link rel="preload" as="image" href="assets/images/m/A01-BQ-4k.webp" media="(pointer: coarse)">
+<link rel="preload" as="image" href="assets/images/m/A01-FG.webp" media="(pointer: coarse)">
+<link rel="preload" as="image" href="assets/images/A01-BG-src.jpg" media="(pointer: fine)">
+<link rel="preload" as="image" href="assets/images/A01-BQ-4k.webp" media="(pointer: fine)">
+<link rel="preload" as="image" href="assets/images/A01-FG.webp" media="(pointer: fine)">
 <script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js":"vendor/react.production.min.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"vendor/react-dom.production.min.js"};</script>
 <script src="support.js"></script>
 </head>
@@ -22,12 +30,16 @@
 body{margin:0;background:#F6F2EA;color:#2B2723;font-family:var(--fs-sans);-webkit-font-smoothing:antialiased;overscroll-behavior:none}
 a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
 *{box-sizing:border-box}
+@keyframes fl-in{from{opacity:0}to{opacity:1}}
 @media (max-width:700px){
 .m-head{padding:22px 24px!important}
 .m-kick{left:24px!important}
 .m-hero{left:0!important;right:auto!important;width:100%!important;bottom:0!important;padding:56px 24px 104px!important;gap:16px!important;background:linear-gradient(0deg,rgba(250,246,239,.9) 0%,rgba(250,246,239,.7) 65%,rgba(250,246,239,0) 100%)!important}
 .m-hero>span:first-child{font-size:21px!important;max-width:24ch}
-.m-hint{left:24px!important;bottom:30px!important;transform:none!important;align-items:flex-start!important}
+.m-hint{bottom:30px!important}
+.m-sec{left:24px!important;top:15vh!important;max-width:calc(100vw - 48px)!important}
+.m-veil{background:linear-gradient(180deg,rgba(250,246,239,.94) 0%,rgba(250,246,239,.88) 46%,rgba(250,246,239,.6) 62%,rgba(250,246,239,0) 78%)!important}
+.m-co>span:nth-child(2){width:24px!important}
 .m-s4{left:24px!important;top:15vh!important;max-width:calc(100vw - 48px)!important}
 .m-s4>span:last-of-type{max-width:30ch}
 }
@@ -39,6 +51,10 @@ a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
   </div>
 
   <div style="position:fixed;inset:0;z-index:2;pointer-events:none">
+    <div ref="{{ loaderRef }}" style="position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#F6F2EA;animation:fl-in .5s .25s both">
+      <span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:30px;letter-spacing:-.01em;color:#1F1B18">Ателье <em>Флёр</em></span>
+      <span style="width:120px;height:1px;background:rgba(43,39,35,.15);position:relative;overflow:hidden"><span ref="{{ loadBarRef }}" style="position:absolute;inset:0;background:#2B2723;transform-origin:left;transform:scaleX(0);transition:transform .3s ease-out"></span></span>
+    </div>
     <div class="m-head" style="position:absolute;top:0;left:0;right:0;z-index:3;padding:22px clamp(18px,3vw,40px);display:flex;justify-content:space-between;align-items:baseline;gap:16px">
       <span ref="{{ kickRef }}" class="m-kick" style="position:absolute;left:clamp(18px,3vw,40px);top:28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723;opacity:0">Цветы и композиции</span>
       <span ref="{{ brandRef }}" style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:22px;letter-spacing:-.01em;color:#1F1B18;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 14px rgba(250,246,239,.85);opacity:0">Ателье Флёр</span>
@@ -59,9 +75,11 @@ a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
     </div>
     <div ref="{{ hint1Ref }}" class="m-hint" style="position:absolute;left:50%;bottom:58px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:#4A443E;white-space:nowrap;opacity:0"><span>Листайте</span><span style="width:1px;height:18px;background:rgba(43,39,35,.4)"></span></div>
 
-    <div ref="{{ veilRef }}" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,246,239,.9) 0%,rgba(250,246,239,.72) 34%,rgba(250,246,239,0) 62%);opacity:0"></div>
-    <div ref="{{ roseRef }}" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">01 · Широкий ассортимент</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Любой наш букет — отдельная работа,<br><em style="color:#7A534D">собранная бережно и с точностью до мелочей.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Работаем только с отборными цветами и везём их напрямую от поставщиков, которым доверяем.</span></div>
-    <div ref="{{ line2Ref }}" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">02 · Индивидуальный подход</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Флорист соберёт композицию,<br><em style="color:#7A534D">в которой прозвучит именно ваше чувство.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Выслушаем каждое пожелание и подскажем, какие цветы лучше всего подойдут к вашему поводу.</span></div>
+    <div ref="{{ phARef }}" style="position:absolute;left:24px;right:24px;font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,11.5vw,52px);line-height:1;letter-spacing:-.015em;color:#1F1B18;text-shadow:0 0 8px rgba(250,246,239,.95),0 0 22px rgba(250,246,239,.9);opacity:0;visibility:hidden;top:15vh">Свет — первый<br><em>материал.</em></div>
+    <div ref="{{ phBRef }}" style="position:absolute;left:24px;right:24px;font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,11.5vw,52px);line-height:1;letter-spacing:-.015em;color:#1F1B18;text-shadow:0 0 8px rgba(250,246,239,.95),0 0 22px rgba(250,246,239,.9);opacity:0;visibility:hidden;bottom:13vh">Остальное —<br><em style="color:#8A5F59">руками.</em></div>
+    <div ref="{{ veilRef }}" class="m-veil" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,246,239,.9) 0%,rgba(250,246,239,.72) 34%,rgba(250,246,239,0) 62%);opacity:0"></div>
+    <div ref="{{ roseRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">01 · Широкий ассортимент</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Любой наш букет — отдельная работа,<br><em style="color:#7A534D">собранная бережно и с точностью до мелочей.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Работаем только с отборными цветами и везём их напрямую от поставщиков, которым доверяем.</span></div>
+    <div ref="{{ line2Ref }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">02 · Индивидуальный подход</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Флорист соберёт композицию,<br><em style="color:#7A534D">в которой прозвучит именно ваше чувство.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Выслушаем каждое пожелание и подскажем, какие цветы лучше всего подойдут к вашему поводу.</span></div>
 
     <div ref="{{ s4Ref }}" class="m-s4" style="position:absolute;left:clamp(20px,5vw,72px);top:18vh;display:flex;flex-direction:column;gap:14px;max-width:min(26ch,34vw);opacity:0">
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#4A443E">№ 06 · Signature</span>
@@ -70,22 +88,22 @@ a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
       
     </div>
     <div ref="{{ hint4Ref }}" style="position:absolute;left:50%;bottom:11vh;transform:translateX(-50%);color:#2B2723;background:#FBF8F2;padding:5px 9px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0">Нажмите и удерживайте, чтобы рассмотреть</div>
-    <div ref="{{ s4bRef }}" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">03 · Быстрая доставка</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Букет приедет лично к вам в руки,<br><em style="color:#7A534D">в какой бы точке города вы ни были.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Доставляем быстро, и цветы приезжают свежими, без единого изъяна. Возим по всему городу, а перед отправкой присылаем фото букета.</span><div style="display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:14px;color:#1F1B18;border-top:1px solid rgba(43,39,35,.28);padding-top:14px"><span>Самовывоз</span><span>бесплатно</span><span>По городу</span><span>от 500 ₽</span></div></div>
-    <div ref="{{ s4cRef }}" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Уход за цветами · Flowers care</span><div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(43,39,35,.28)"><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">01</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Подрезайте стебли раз в 2–3 дня</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">02</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Срежьте лишнюю листву</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">03</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Регулярно меняйте воду в вазе</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">04</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Берегите букет от прямого солнца</span></div></div></div>
+    <div ref="{{ s4bRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">03 · Быстрая доставка</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Букет приедет лично к вам в руки,<br><em style="color:#7A534D">в какой бы точке города вы ни были.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Доставляем быстро, и цветы приезжают свежими, без единого изъяна. Возим по всему городу, а перед отправкой присылаем фото букета.</span><div style="display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:14px;color:#1F1B18;border-top:1px solid rgba(43,39,35,.28);padding-top:14px"><span>Самовывоз</span><span>бесплатно</span><span>По городу</span><span>от 500 ₽</span></div></div>
+    <div ref="{{ s4cRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Уход за цветами · Flowers care</span><div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(43,39,35,.28)"><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">01</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Подрезайте стебли раз в 2–3 дня</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">02</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Срежьте лишнюю листву</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">03</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Регулярно меняйте воду в вазе</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">04</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Берегите букет от прямого солнца</span></div></div></div>
 
-    <div ref="{{ co0 }}" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
+    <div ref="{{ co0 }}" class="m-co" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
       <span style="width:7px;height:7px;border-radius:50%;background:#2B2723;margin-left:-3.5px"></span><span style="width:44px;height:1px;background:#2B2723"></span>
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Лён, необработанный</span>
     </div>
-    <div ref="{{ co1 }}" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
+    <div ref="{{ co1 }}" class="m-co" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
       <span style="width:7px;height:7px;border-radius:50%;background:#2B2723;margin-left:-3.5px"></span><span style="width:44px;height:1px;background:#2B2723"></span>
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Шёлковая лента, шампань</span>
     </div>
-    <div ref="{{ co2 }}" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
+    <div ref="{{ co2 }}" class="m-co" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
       <span style="width:7px;height:7px;border-radius:50%;background:#2B2723;margin-left:-3.5px"></span><span style="width:44px;height:1px;background:#2B2723"></span>
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Керамика, матовая</span>
     </div>
-    <div ref="{{ co3 }}" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
+    <div ref="{{ co3 }}" class="m-co" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
       <span style="width:7px;height:7px;border-radius:50%;background:#2B2723;margin-left:-3.5px"></span><span style="width:44px;height:1px;background:#2B2723"></span>
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Кромка лепестка</span>
     </div>
@@ -129,6 +147,7 @@ class Component extends DCLogic {
   canvasRef = React.createRef(); brandRef = React.createRef(); hint1Ref = React.createRef(); line2Ref = React.createRef();
   s4Ref = React.createRef(); hint4Ref = React.createRef(); endRef = React.createRef();
   ctaRef = React.createRef(); heroRef = React.createRef(); kickRef = React.createRef(); state = { copied: false };
+  loaderRef = React.createRef(); loadBarRef = React.createRef(); phARef = React.createRef(); phBRef = React.createRef();
   veilRef = React.createRef(); roseRef = React.createRef(); s4bRef = React.createRef(); s4cRef = React.createRef();
   co = [React.createRef(), React.createRef(), React.createRef(), React.createRef()];
   hudScene = React.createRef(); hudAsset = React.createRef(); hudBar = React.createRef();
@@ -179,7 +198,7 @@ class Component extends DCLogic {
     const coarse = window.matchMedia('(pointer: coarse)').matches;
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, preserveDrawingBuffer: true });
     renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
-    const dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     renderer.setPixelRatio(dpr);
     renderer.setClearColor(0xF6F2EA, 1);
     const disposables = [];
@@ -262,19 +281,27 @@ class Component extends DCLogic {
     // ---------- Scene A · Aperture ----------
     const sA = new THREE.Scene(); sA.background = new THREE.Color(IV);
     const camA = new THREE.PerspectiveCamera(38, 1, 0.02, 100);
-    let texReady = false; const lm = new THREE.LoadingManager();
-    lm.onLoad = () => { texReady = true; }; lm.onError = () => {};
-    setTimeout(() => { texReady = true; }, 9000);
-    const tl = new THREE.TextureLoader(lm);
-    const img = (u, o = {}) => { const t = tl.load(u); t.anisotropy = 8; if (o.rep) { t.repeat.set(o.rep[0], o.rep[1]); t.offset.set(o.off[0], o.off[1]); } disposables.push(t); return t; };
-    plane(sA, img('assets/images/A01-BG-src.jpg'), 24.2, 13.5, -3.29, -0.25, -6, { opaque: true });
+    // First-screen textures gate the start; everything else streams in right after.
+    let texReady = false, loadP = 0; const later = [];
+    const ready = () => { if (texReady) return; texReady = true; later.splice(0).forEach((f) => f()); };
+    const lm = new THREE.LoadingManager(ready, (u, a, b) => { loadP = a / b; }, () => {});
+    setTimeout(ready, 9000);
+    const tl = new THREE.TextureLoader(lm), il = new THREE.ImageLoader();
+    const dir = coarse ? 'assets/images/m/' : 'assets/images/';
+    const img = (u, o = {}) => {
+      const src = dir + u; let t;
+      if (o.first) t = tl.load(src);
+      else { t = new THREE.Texture(); later.push(() => il.load(src, (im) => { t.image = im; t.needsUpdate = true; })); }
+      t.anisotropy = 8; if (o.rep) { t.repeat.set(o.rep[0], o.rep[1]); t.offset.set(o.off[0], o.off[1]); } disposables.push(t); return t;
+    };
+    plane(sA, img('A01-BG-src.jpg', { first: true }), 24.2, 13.5, -3.29, -0.25, -6, { opaque: true });
     plane(sA, blob('#CDBFA8', 0.45), 1.9, 0.32, 0.43, -1.02, -2.97);
-    plane(sA, img('assets/images/A01-BQ-4k.webp'), 5.0, 5.0, 0.40, 1.15, -2.95);
+    plane(sA, img('A01-BQ-4k.webp', { first: true }), 5.0, 5.0, 0.40, 1.15, -2.95);
     const hero = new THREE.Vector3(0.35, 1.05, -2.95);
     const tWide = textTex([{ t: 'Ателье Флёр' }], 300, { w: 2600 });
     const tLeft = textTex([{ t: 'Ателье' }, { t: 'Флёр', italic: true }], 300, { w: 1700, align: 'left' });
     const titleA = plane(sA, tWide, 6.6, 6.6 / tWide.userData.aspect, 0, 0.62, -2.0);
-    const fgA = [plane(sA, img('assets/images/A01-FG.webp'), 8.8, 4.95, 0, 0.7, -0.6)];
+    const fgA = [plane(sA, img('A01-FG.webp', { first: true }), 8.8, 4.95, 0, 0.7, -0.6)];
     fgA.forEach((m) => { m.renderOrder = 99999; });
     titleA.renderOrder = 100001;
     const haloA = plane(sA, blob('#FAF6EF', 0.6), 1, 1, 0, 0.62, -2.03); haloA.renderOrder = 100000;
@@ -282,9 +309,9 @@ class Component extends DCLogic {
     // ---------- Scene B · Pull-back (A02 macro → V01 end frame; V01 video pending) ----------
     const sB = new THREE.Scene(); sB.background = new THREE.Color(IV);
     const camB = new THREE.PerspectiveCamera(26, 1, 0.02, 100);
-    plane(sB, img('assets/images/V01-END.jpg'), 16, 8.93, 0, 0, 0, { opaque: true });
+    plane(sB, img('V01-END.jpg'), 16, 8.93, 0, 0, 0, { opaque: true });
     const macroAlpha = mkTex(512, 512, (x) => { const g = x.createRadialGradient(256, 256, 0, 256, 256, 256); g.addColorStop(0, '#fff'); g.addColorStop(0.72, '#fff'); g.addColorStop(1, '#000'); x.fillStyle = g; x.fillRect(0, 0, 512, 512); });
-    const macro = plane(sB, img('assets/images/A02.jpg'), 2.6, 1.452, 0.08, -0.98, 0.02);
+    const macro = plane(sB, img('A02.jpg'), 2.6, 1.452, 0.08, -0.98, 0.02);
     macro.material.alphaMap = macroAlpha; macro.material.needsUpdate = true;
     const roseB = new THREE.Vector3(0.08, -0.98, 0);
 
@@ -300,8 +327,8 @@ class Component extends DCLogic {
       ['A03 · signature', 0.8, '#F0DDD6', 1.9, [0, 0.05, -23], 0],
     ].map(([lbl, ar, tint, w, p, ry], i) => {
       const h = w / ar;
-      const src = ['assets/images/V01-END.jpg', 'assets/images/G1.jpg', null, 'assets/images/G2.jpg', 'assets/images/V02-STILL.jpg', 'assets/images/A03-src.jpg'][i];
-      const tex = src ? img(src) : img('assets/images/A02.jpg', { rep: [0.558, 1], off: [0.221, 0] });
+      const src = ['V01-END.jpg', 'G1.jpg', null, 'G2.jpg', 'V02-STILL.jpg', 'A03-src.jpg'][i];
+      const tex = src ? img(src) : img('A02.jpg', { rep: [0.558, 1], off: [0.221, 0] });
       const m = plane(sC, tex, w, h, p[0], p[1], p[2], { opaque: true, fog: true });
       m.rotation.y = ry;
       return { m, base: new THREE.Vector3(...p), ry, w, h, i };
@@ -309,7 +336,6 @@ class Component extends DCLogic {
     const ph1 = textTex([{ t: 'Свет — первый' }, { t: 'материал.', italic: true }], 220, { w: 1700 });
     const ph2 = textTex([{ t: 'Остальное —' }, { t: 'руками.', italic: true, color: '#8A5F59' }], 220, { w: 1500 });
     const phr = [plane(sC, ph1, 2.6, 2.6 / ph1.userData.aspect, 0.7, 0.8, -7, { fog: true }), plane(sC, ph2, 2.3, 2.3 / ph2.userData.aspect, -0.5, -0.75, -15.2, { fog: true })];
-    phr.forEach((m) => { m.userData.base = m.position.clone(); });
     const pathC = new THREE.CatmullRomCurve3([[0, 0, 2.3], [0.6, 0.1, -1.8], [-0.4, 0, -6.4], [0.5, 0.2, -11], [-0.3, 0.05, -15.6], [0, -0.12, -19.6]].map((a) => new THREE.Vector3(...a)));
 
     // ---------- Scene D · The Object ----------
@@ -318,7 +344,7 @@ class Component extends DCLogic {
     plane(sD, mkTex(512, 512, (x, w, h) => { const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#F5EEE6'); g.addColorStop(0.62, '#F2E7DB'); g.addColorStop(1, '#EAD8C3'); x.fillStyle = g; x.fillRect(0, 0, w, h); }), 18, 16, 0, 0.3, -3);
     const edge = mkTex(128, 160, (x, w, h) => { const id = x.createImageData(w, h); for (let jj = 0; jj < h; jj++) for (let ii = 0; ii < w; ii++) { const e = Math.min(ii, w - 1 - ii, jj, h - 1 - jj) / (w * 0.12); const a = Math.max(0, Math.min(1, e)); const v = Math.round(a * a * (3 - 2 * a) * 255); const k = (jj * w + ii) * 4; id.data[k] = id.data[k + 1] = id.data[k + 2] = v; id.data[k + 3] = 255; } x.putImageData(id, 0, 0); });
     const a3geo = new THREE.PlaneGeometry(3.22, 4.0, 160, 200);
-    const a3mat = new THREE.MeshBasicMaterial({ map: img('assets/images/A03-src.jpg'), alphaMap: edge, transparent: true, depthWrite: false });
+    const a3mat = new THREE.MeshBasicMaterial({ map: img('A03-src.jpg'), alphaMap: edge, transparent: true, depthWrite: false });
     const a3 = new THREE.Mesh(a3geo, a3mat); a3.position.set(0, 0.3, 0); a3.renderOrder = 7000; sD.add(a3); disposables.push(a3geo, a3mat);
     const dImg = new Image(); dImg.onload = () => {
       const c = document.createElement('canvas'); c.width = dImg.width; c.height = dImg.height; const x = c.getContext('2d'); x.drawImage(dImg, 0, 0);
@@ -326,7 +352,7 @@ class Component extends DCLogic {
       for (let n = 0; n < pos.count; n++) { const px = Math.round(uv.getX(n) * (c.width - 1)), py = Math.round((1 - uv.getY(n)) * (c.height - 1)); pos.setZ(n, d[(py * c.width + px) * 4] / 255 * 0.38); }
       pos.needsUpdate = true;
     };
-    dImg.src = 'assets/images/A03-depth.png';
+    later.push(() => { dImg.src = 'assets/images/A03-depth.png'; });
     const anchors = [new THREE.Vector3(0.11, -0.34, 0.36), new THREE.Vector3(0.32, -0.5, 0.36), new THREE.Vector3(0.19, -0.98, 0.36), new THREE.Vector3(0.0, 0.34, 0.37)];
     const stops = [{ t: new THREE.Vector3(0, 0.3, 0.1), d: 5.4 }, { t: new THREE.Vector3(0.16, 0.62, 0.3), d: 3.0 }, { t: new THREE.Vector3(0.1, 0.22, 0.36), d: 1.35 }];
 
@@ -387,6 +413,7 @@ class Component extends DCLogic {
     const st = { W: 1, H: 1, aspect: 1, f: 1, g: 0, gT: 0, gx: 0, gy: 0, tgx: 0, tgy: 0, mx: -1, my: -1, moved: false, hold: false, touch: false, lA: 0, t0: performance.now() };
     const resize = () => {
       const W = window.innerWidth, H = window.innerHeight; st.W = W; st.H = H; st.aspect = W / H;
+      beats = st.aspect < 0.9 ? beatsAll.filter((_, i) => i !== 5) : beatsAll; bi = Math.min(bi, beats.length - 1);
       st.f = st.aspect < 1 ? 1 + (1 - st.aspect) * 1.1 : 1;
       renderer.setSize(W, H, false);
       [rtA, rtB].forEach((rt) => rt.setSize(Math.round(W * dpr), Math.round(H * dpr)));
@@ -408,7 +435,9 @@ class Component extends DCLogic {
     const snap = this.props.snapScroll ?? true;
     const cz = []; for (let i = 0; i <= 400; i++) cz.push(pathC.getPoint(i / 400).z);
     const pcAt = (z) => { let b = 0; for (let i = 0; i <= 400; i++) if (Math.abs(cz[i] - z) < Math.abs(cz[b] - z)) b = i; return b / 400; };
-    const beats = [0, 215, 377, 400 + 320 * pcAt(-3.4), 400 + 320 * pcAt(-9.6), 690, 770, 842, 936, 1010];
+    // On narrow screens the bare A03 frame (index 5) repeats the next scene, so it is skipped.
+    const beatsAll = [0, 215, 377, 400 + 320 * pcAt(-3.4), 400 + 320 * pcAt(-9.6), 690, 770, 842, 936, 1010];
+    let beats = beatsAll;
     let bi = 0, locked = false, lockT = 0, lastW = 0, acc = 0, ty0 = null;
     const go = (d) => { if (performance.now() - st.twT0 < st.twD * 0.7) return; const n = Math.max(0, Math.min(beats.length - 1, bi + d)); if (n === bi) return; bi = n; st.gT = beats[bi]; locked = true; lockT = performance.now(); acc = 0; };
     window.__fsGo = (i) => { bi = Math.max(0, Math.min(beats.length - 1, i)); st.gT = beats[bi]; };
@@ -455,7 +484,7 @@ class Component extends DCLogic {
 
     const frame = (now) => {
       this.raf = requestAnimationFrame(frame);
-      if (!texReady) { st.t0 = now; renderer.setRenderTarget(null); renderer.setClearColor(IV, 1); renderer.clear(); return; }
+      if (!texReady) { st.t0 = now; renderer.setRenderTarget(null); renderer.setClearColor(IV, 1); renderer.clear(); if (this.loadBarRef.current) this.loadBarRef.current.style.transform = `scaleX(${loadP.toFixed(3)})`; return; }
       const time = (now - st.t0) / 1000;
       if (snap && !reduce) {
         if (st.gT !== st.twTo) { st.twFrom = st.g; st.twTo = st.gT; st.twT0 = now; st.twD = Math.min(3000, 1500 + Math.abs(st.gT - st.g) * 7); }
@@ -469,7 +498,7 @@ class Component extends DCLogic {
 
       // A
       const dol = ss(0.04, 1, p1);
-      const intro = reduce ? 1 : ss(0, 2.6, time);
+      const intro = reduce ? 1 : ss(0, 1.8, time);
       const gazeA = 1 - dol * 0.92;
       camA.position.set(lerp(0, hero.x, dol) + gx * 0.4 * gazeA, lerp(0.7, hero.y, dol) - gy * 0.24 * gazeA, lerp(5 * F + (1 - intro) * 0.5, hero.z + 1.05, Math.pow(dol, 0.85)));
       camA.fov = lerp(38, 26, dol) * (1 + breath); camA.updateProjectionMatrix();
@@ -493,9 +522,9 @@ class Component extends DCLogic {
       camC.lookAt(tmp);
       camC.rotateY(-gx * 0.07); camC.rotateX(-gy * 0.04);
       const f3 = frames[3], d3 = camC.position.z - f3.base.z, side = ss(2.5, 8, d3);
-      const mxC = [0, -3, 0.35, -1.6, 0.3, 0]; frames.forEach((fr, i) => { fr.m.position.x = nC ? mxC[i] : fr.base.x; });
-      phr.forEach((m, i) => { const b = m.userData.base; m.position.x = nC ? [0, 0.15][i] : b.x; m.position.y = nC ? [1.3, -1.15][i] : b.y; m.scale.setScalar(nC ? 0.6 : 1); });
-      f3.m.rotation.y = lerp(0.2, 1.0, side); f3.m.position.x = lerp(nC ? mxC[3] : f3.base.x, nC ? -3 : -4.6, side);
+      const mxC = [0, -5, 0.12, -1.6, 0.1, 0], msC = [1, 1, 1, 1, 0.86, 1]; frames.forEach((fr, i) => { fr.m.position.x = nC ? mxC[i] : fr.base.x; fr.m.scale.setScalar(nC ? msC[i] : 1); });
+      phr.forEach((m) => { m.visible = !nC; });
+      f3.m.rotation.y = lerp(0.2, 1.0, side); f3.m.position.x = lerp(nC ? mxC[3] : f3.base.x, nC ? -5 : -4.6, side);
       // D
       const q = p4; let s0, s1, k;
       if (q < 0.22) { s0 = 0; s1 = 0; k = 0; } else if (q < 0.42) { s0 = 0; s1 = 1; k = ss(0.22, 0.42, q); } else if (q < 0.6) { s0 = 1; s1 = 1; k = 0; } else if (q < 0.8) { s0 = 1; s1 = 2; k = ss(0.6, 0.8, q); } else { s0 = 2; s1 = 2; k = 0; }
@@ -534,10 +563,10 @@ class Component extends DCLogic {
 
       // DOM
       setO(this.brandRef, ss(150, 190, g));
-      setO(this.ctaRef, reduce ? 1 : ss(2.4, 3.6, time));
-      const heroV = (reduce ? 1 : ss(2.8, 4.2, time)) * (1 - ss(4, 36, g));
-      setO(this.heroRef, heroV); setO(this.kickRef, (reduce ? 1 : ss(2.4, 3.6, time)) * (1 - ss(60, 140, g)));
-      setO(this.hint1Ref, (reduce ? 1 : ss(4.2, 5.4, time)) * (1 - ss(2, 14, g)));
+      setO(this.loaderRef, 1 - ss(0, 0.5, time)); setO(this.ctaRef, reduce ? 1 : ss(1.0, 2.0, time));
+      const heroV = (reduce ? 1 : ss(1.2, 2.3, time)) * (1 - ss(4, 36, g));
+      setO(this.heroRef, heroV); setO(this.kickRef, (reduce ? 1 : ss(1.0, 2.0, time)) * (1 - ss(60, 140, g)));
+      setO(this.hint1Ref, (reduce ? 1 : ss(2.4, 3.2, time)) * (1 - ss(2, 14, g)));
       const vRose = ss(198, 222, g) * (1 - ss(240, 285, g));
       const vL2 = ss(0.78, 0.9, p2) * (1 - ss(380, 398, g));
       setO(this.roseRef, vRose); setO(this.line2Ref, vL2);
@@ -545,6 +574,8 @@ class Component extends DCLogic {
       setO(this.s4Ref, s4v);
       const vB = ss(0.44, 0.52, p4) * (1 - ss(0.58, 0.66, p4)), vC = ss(0.82, 0.88, p4) * (1 - ss(955, 975, g));
       setO(this.s4bRef, vB); setO(this.s4cRef, vC);
+      const phV = (b) => (st.aspect < 0.9 ? ss(b - 30, b - 6, g) * (1 - ss(b + 6, b + 26, g)) : 0);
+      setO(this.phARef, phV(beatsAll[3])); setO(this.phBRef, phV(beatsAll[4]));
       setO(this.veilRef, Math.max(vRose, vL2, s4v, vB, vC));
       setO(this.hint4Ref, coarse ? 0 : ss(745, 780, g) * (1 - ss(0.2, 0.26, p4)) * (st.lA > 0.2 ? 0 : 1));
       setO(this.endRef, ss(975, 1010, g));
@@ -556,7 +587,7 @@ class Component extends DCLogic {
         if (v > 0) {
           tmp.copy(a).project(camD); const x = (tmp.x + 1) / 2 * st.W, flip = x + el.offsetWidth > st.W - 12;
           el.style.flexDirection = flip ? 'row-reverse' : '';
-          el.style.transform = `translate3d(${(flip ? x - el.offsetWidth + 3.5 : x).toFixed(1)}px, ${((1 - tmp.y) / 2 * st.H - 10).toFixed(1)}px, 0)`;
+          el.style.transform = `translate3d(${(flip ? Math.max(16, x - el.offsetWidth + 3.5) : x).toFixed(1)}px, ${((1 - tmp.y) / 2 * st.H - 10).toFixed(1)}px, 0)`;
         }
       });
       if (sceneIx !== lastHud) {
@@ -572,7 +603,7 @@ class Component extends DCLogic {
 
   renderVals() {
     return {
-      canvasRef: this.canvasRef, brandRef: this.brandRef, hint1Ref: this.hint1Ref, line2Ref: this.line2Ref, s4Ref: this.s4Ref, hint4Ref: this.hint4Ref, endRef: this.endRef, veilRef: this.veilRef, ctaRef: this.ctaRef, heroRef: this.heroRef, kickRef: this.kickRef,
+      canvasRef: this.canvasRef, loaderRef: this.loaderRef, loadBarRef: this.loadBarRef, phARef: this.phARef, phBRef: this.phBRef, brandRef: this.brandRef, hint1Ref: this.hint1Ref, line2Ref: this.line2Ref, s4Ref: this.s4Ref, hint4Ref: this.hint4Ref, endRef: this.endRef, veilRef: this.veilRef, ctaRef: this.ctaRef, heroRef: this.heroRef, kickRef: this.kickRef,
       promoHero: this.state.copied ? 'ПЕРВЫЙ10 скопирован' : '−10% на первый заказ · ПЕРВЫЙ10',
       promoLabel: this.state.copied ? 'Скопировано' : 'Скопировать',
       copyPromo: () => { try { navigator.clipboard.writeText('ПЕРВЫЙ10'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this._ct); this._ct = setTimeout(() => this.setState({ copied: false }), 2200); }, roseRef: this.roseRef, s4bRef: this.s4bRef, s4cRef: this.s4cRef,
