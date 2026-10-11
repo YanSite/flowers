@@ -11,10 +11,10 @@
 <meta name="theme-color" content="#F6F2EA">
 <link rel="icon" href="data:,">
 <link rel="preload" as="script" href="vendor/three.min.js">
-<link rel="preload" as="image" href="assets/images/m/A01-BG-src.jpg" media="(pointer: coarse)">
+<link rel="preload" as="image" href="assets/images/m/A01-BG-src.webp" media="(pointer: coarse)">
 <link rel="preload" as="image" href="assets/images/m/A01-BQ-4k.webp" media="(pointer: coarse)">
 <link rel="preload" as="image" href="assets/images/m/A01-FG.webp" media="(pointer: coarse)">
-<link rel="preload" as="image" href="assets/images/A01-BG-src.jpg" media="(pointer: fine)">
+<link rel="preload" as="image" href="assets/images/A01-BG-src.webp" media="(pointer: fine)">
 <link rel="preload" as="image" href="assets/images/A01-BQ-4k.webp" media="(pointer: fine)">
 <link rel="preload" as="image" href="assets/images/A01-FG.webp" media="(pointer: fine)">
 <script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js":"vendor/react.production.min.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"vendor/react-dom.production.min.js"};</script>
@@ -294,7 +294,7 @@ class Component extends DCLogic {
       else { t = new THREE.Texture(); later.push(() => il.load(src, (im) => { t.image = im; t.needsUpdate = true; })); }
       t.anisotropy = 8; if (o.rep) { t.repeat.set(o.rep[0], o.rep[1]); t.offset.set(o.off[0], o.off[1]); } disposables.push(t); return t;
     };
-    plane(sA, img('A01-BG-src.jpg', { first: true }), 24.2, 13.5, -3.29, -0.25, -6, { opaque: true });
+    plane(sA, img('A01-BG-src.webp', { first: true }), 24.2, 13.5, -3.29, -0.25, -6, { opaque: true });
     plane(sA, blob('#CDBFA8', 0.45), 1.9, 0.32, 0.43, -1.02, -2.97);
     plane(sA, img('A01-BQ-4k.webp', { first: true }), 5.0, 5.0, 0.40, 1.15, -2.95);
     const hero = new THREE.Vector3(0.35, 1.05, -2.95);
@@ -309,9 +309,9 @@ class Component extends DCLogic {
     // ---------- Scene B · Pull-back (A02 macro → V01 end frame; V01 video pending) ----------
     const sB = new THREE.Scene(); sB.background = new THREE.Color(IV);
     const camB = new THREE.PerspectiveCamera(26, 1, 0.02, 100);
-    plane(sB, img('V01-END.jpg'), 16, 8.93, 0, 0, 0, { opaque: true });
+    plane(sB, img('V01-END.webp'), 16, 8.93, 0, 0, 0, { opaque: true });
     const macroAlpha = mkTex(512, 512, (x) => { const g = x.createRadialGradient(256, 256, 0, 256, 256, 256); g.addColorStop(0, '#fff'); g.addColorStop(0.72, '#fff'); g.addColorStop(1, '#000'); x.fillStyle = g; x.fillRect(0, 0, 512, 512); });
-    const macro = plane(sB, img('A02.jpg'), 2.6, 1.452, 0.08, -0.98, 0.02);
+    const macro = plane(sB, img('A02.webp'), 2.6, 1.452, 0.08, -0.98, 0.02);
     macro.material.alphaMap = macroAlpha; macro.material.needsUpdate = true;
     const roseB = new THREE.Vector3(0.08, -0.98, 0);
 
@@ -327,8 +327,8 @@ class Component extends DCLogic {
       ['A03 · signature', 0.8, '#F0DDD6', 1.9, [0, 0.05, -23], 0],
     ].map(([lbl, ar, tint, w, p, ry], i) => {
       const h = w / ar;
-      const src = ['V01-END.jpg', 'G1.jpg', null, 'G2.jpg', 'V02-STILL.jpg', 'A03-src.jpg'][i];
-      const tex = src ? img(src) : img('A02.jpg', { rep: [0.558, 1], off: [0.221, 0] });
+      const src = ['V01-END.webp', 'G1.webp', null, 'G2.webp', 'V02-STILL.webp', 'A03-src.webp'][i];
+      const tex = src ? img(src) : img('A02.webp', { rep: [0.558, 1], off: [0.221, 0] });
       const m = plane(sC, tex, w, h, p[0], p[1], p[2], { opaque: true, fog: true });
       m.rotation.y = ry;
       return { m, base: new THREE.Vector3(...p), ry, w, h, i };
@@ -344,7 +344,7 @@ class Component extends DCLogic {
     plane(sD, mkTex(512, 512, (x, w, h) => { const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#F5EEE6'); g.addColorStop(0.62, '#F2E7DB'); g.addColorStop(1, '#EAD8C3'); x.fillStyle = g; x.fillRect(0, 0, w, h); }), 18, 16, 0, 0.3, -3);
     const edge = mkTex(128, 160, (x, w, h) => { const id = x.createImageData(w, h); for (let jj = 0; jj < h; jj++) for (let ii = 0; ii < w; ii++) { const e = Math.min(ii, w - 1 - ii, jj, h - 1 - jj) / (w * 0.12); const a = Math.max(0, Math.min(1, e)); const v = Math.round(a * a * (3 - 2 * a) * 255); const k = (jj * w + ii) * 4; id.data[k] = id.data[k + 1] = id.data[k + 2] = v; id.data[k + 3] = 255; } x.putImageData(id, 0, 0); });
     const a3geo = new THREE.PlaneGeometry(3.22, 4.0, 160, 200);
-    const a3mat = new THREE.MeshBasicMaterial({ map: img('A03-src.jpg'), alphaMap: edge, transparent: true, depthWrite: false });
+    const a3mat = new THREE.MeshBasicMaterial({ map: img('A03-src.webp'), alphaMap: edge, transparent: true, depthWrite: false });
     const a3 = new THREE.Mesh(a3geo, a3mat); a3.position.set(0, 0.3, 0); a3.renderOrder = 7000; sD.add(a3); disposables.push(a3geo, a3mat);
     const dImg = new Image(); dImg.onload = () => {
       const c = document.createElement('canvas'); c.width = dImg.width; c.height = dImg.height; const x = c.getContext('2d'); x.drawImage(dImg, 0, 0);
