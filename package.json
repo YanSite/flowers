@@ -2,7 +2,7 @@
   "name": "@demo/flowers",
   "version": "0.0.0",
   "private": true,
-  "description": "Демо-проект: статический сайт, публикуется GitHub Pages из зеркала YanSite/flowers. Управляется из монорепозитория Engine — см. projects/demo/README.md.",
+  "description": "Концепт «Ателье Флёр»: статический сайт, публикуется из зеркала YanSite/flowers.",
   "scripts": {
     "dev": "serve -l 4103 --no-clipboard .",
     "build": "node ../../../tools/demo/check-static.mjs ."
