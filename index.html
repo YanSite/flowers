@@ -61,67 +61,62 @@ a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
 
   <div style="position:fixed;inset:0;z-index:2;pointer-events:none">
     <div class="m-head" style="position:absolute;top:0;left:0;right:0;z-index:3;padding:22px clamp(18px,3vw,40px);display:flex;justify-content:space-between;align-items:baseline;gap:16px">
-      <span ref="{{ kickRef }}" class="m-kick" style="position:absolute;left:clamp(18px,3vw,40px);top:28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723;opacity:0">Цветы и композиции</span>
+      <span ref="{{ kickRef }}" class="m-kick" style="position:absolute;left:clamp(18px,3vw,40px);top:28px;font-size:13px;color:#2B2723;opacity:0">Цветы и композиции</span>
       <span ref="{{ brandRef }}" style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:22px;letter-spacing:-.01em;color:#1F1B18;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 14px rgba(250,246,239,.85);opacity:0">Ателье Флёр</span>
       <div ref="{{ ctaRef }}" style="display:flex;align-items:center;gap:10px;opacity:0">
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#2B2723;background:#FBF8F2;padding:4px 8px">Открыто до 22:00</span>
+        <span style="font-size:12px;color:#2B2723;background:#FBF8F2;padding:4px 8px">Открыто до 22:00</span>
         
       </div>
     </div>
 
     <div ref="{{ heroRef }}" class="m-hero" style="position:absolute;right:calc(clamp(18px,4vw,64px) - 44px);bottom:calc(max(11vh,100px) - 44px);width:calc(min(272px,100vw - 2 * clamp(18px,4vw,64px)) + 88px);padding:44px;background:radial-gradient(ellipse 50% 50% at 50% 55%,rgba(250,246,239,.88) 0%,rgba(250,246,239,.62) 58%,rgba(250,246,239,0) 100%);display:flex;flex-direction:column;gap:12px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0">
-      <span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(18px,1.5vw,22px);line-height:1.18;letter-spacing:-.005em;color:#1F1B18;text-wrap:pretty">Авторские букеты с доставкой <em style="color:#7A534D">по всему городу</em></span>
+      <span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(18px,1.5vw,22px);line-height:1.18;letter-spacing:-.005em;color:#1F1B18;text-wrap:pretty">Авторские букеты с доставкой по всему городу</span>
       <span style="height:1px;background:rgba(43,39,35,.3)"></span>
-      <div style="display:flex;flex-direction:column;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">
+      <div style="display:flex;flex-direction:column;gap:5px;font-size:13px;color:#2B2723">
         <span>Сезонные цветы каждый день</span>
         <span>Фото букета перед отправкой</span>
       </div>
-      <button onClick="{{ copyPromo }}" title="Скопировать промокод" style="pointer-events:auto;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#1F1B18;background:none;border:none;border-bottom:1px dashed #1F1B18;padding:2px 0;cursor:pointer;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85)" style-hover="color:#7A534D;border-bottom-color:#7A534D">{{ promoHero }}</button>
     </div>
-    <div ref="{{ hint1Ref }}" class="m-hint" style="position:absolute;left:50%;bottom:58px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:#4A443E;white-space:nowrap;opacity:0"><span>Листайте</span><span style="width:1px;height:18px;background:rgba(43,39,35,.4)"></span></div>
+    <div ref="{{ hint1Ref }}" class="m-hint" style="position:absolute;left:50%;bottom:58px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#4A443E;white-space:nowrap;opacity:0"><span>Листайте</span><span style="width:1px;height:18px;background:rgba(43,39,35,.4)"></span></div>
 
-    <div ref="{{ phARef }}" style="position:absolute;left:24px;right:24px;font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,11.5vw,52px);line-height:1;letter-spacing:-.015em;color:#1F1B18;text-shadow:0 0 8px rgba(250,246,239,.95),0 0 22px rgba(250,246,239,.9);opacity:0;visibility:hidden;top:15vh">Свет — первый<br><em>материал.</em></div>
-    <div ref="{{ phBRef }}" style="position:absolute;left:24px;right:24px;font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,11.5vw,52px);line-height:1;letter-spacing:-.015em;color:#1F1B18;text-shadow:0 0 8px rgba(250,246,239,.95),0 0 22px rgba(250,246,239,.9);opacity:0;visibility:hidden;bottom:13vh">Остальное —<br><em style="color:#8A5F59">руками.</em></div>
+    <div ref="{{ phARef }}" style="position:absolute;left:24px;right:24px;font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,11.5vw,52px);line-height:1;letter-spacing:-.015em;color:#1F1B18;text-shadow:0 0 8px rgba(250,246,239,.95),0 0 22px rgba(250,246,239,.9);opacity:0;visibility:hidden;top:15vh">Свет — первый<br>материал.</div>
+    <div ref="{{ phBRef }}" style="position:absolute;left:24px;right:24px;font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,11.5vw,52px);line-height:1;letter-spacing:-.015em;color:#1F1B18;text-shadow:0 0 8px rgba(250,246,239,.95),0 0 22px rgba(250,246,239,.9);opacity:0;visibility:hidden;bottom:13vh">Остальное —<br>руками.</div>
     <div ref="{{ veilRef }}" class="m-veil" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,246,239,.9) 0%,rgba(250,246,239,.72) 34%,rgba(250,246,239,0) 62%);opacity:0"></div>
-    <div ref="{{ roseRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">01 · Широкий ассортимент</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Любой наш букет — отдельная работа,<br><em style="color:#7A534D">собранная бережно и с точностью до мелочей.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Работаем только с отборными цветами и везём их напрямую от поставщиков, которым доверяем.</span></div>
-    <div ref="{{ line2Ref }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">02 · Индивидуальный подход</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Флорист соберёт композицию,<br><em style="color:#7A534D">в которой прозвучит именно ваше чувство.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Выслушаем каждое пожелание и подскажем, какие цветы лучше всего подойдут к вашему поводу.</span></div>
+    <div ref="{{ roseRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Прямые поставки</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Любой наш букет собран как отдельная работа.</span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Цветы везём напрямую от поставщиков, которым доверяем.</span></div>
+    <div ref="{{ line2Ref }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Подбор под повод</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Флорист соберёт композицию под ваш повод.</span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Выслушаем ваши пожелания и подскажем, какие цветы подойдут к вашему поводу.</span></div>
 
     <div ref="{{ s4Ref }}" class="m-s4" style="position:absolute;left:clamp(20px,5vw,72px);top:18vh;display:flex;flex-direction:column;gap:14px;max-width:min(26ch,34vw);opacity:0">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#4A443E">№ 06 · Signature</span>
-      <span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,4.6vw,64px);line-height:.95;letter-spacing:-.015em">Композиция<br><em>ателье</em></span>
+      <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#4A443E">Фирменная</span>
+      <span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(40px,4.6vw,64px);line-height:.95;letter-spacing:-.015em">Композиция<br>ателье</span>
       <span style="font-size:15px;line-height:1.55;color:#2B2723;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 14px rgba(250,246,239,.85)">Роза, лизиантус, ранункулюс, астильба, эвкалипт. Лён и шёлк.</span>
       
     </div>
-    <div ref="{{ hint4Ref }}" style="position:absolute;left:50%;bottom:11vh;transform:translateX(-50%);color:#2B2723;background:#FBF8F2;padding:5px 9px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0">Нажмите и удерживайте, чтобы рассмотреть</div>
-    <div ref="{{ s4bRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">03 · Быстрая доставка</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Букет приедет лично к вам в руки,<br><em style="color:#7A534D">в какой бы точке города вы ни были.</em></span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Доставляем быстро, и цветы приезжают свежими, без единого изъяна. Возим по всему городу, а перед отправкой присылаем фото букета.</span><div style="display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:14px;color:#1F1B18;border-top:1px solid rgba(43,39,35,.28);padding-top:14px"><span>Самовывоз</span><span>бесплатно</span><span>По городу</span><span>от 500 ₽</span></div></div>
-    <div ref="{{ s4cRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Уход за цветами · Flowers care</span><div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(43,39,35,.28)"><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">01</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Подрезайте стебли раз в 2–3 дня</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">02</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Срежьте лишнюю листву</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">03</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Регулярно меняйте воду в вазе</span></div><div style="display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#4A443E">04</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Берегите букет от прямого солнца</span></div></div></div>
+    <div ref="{{ hint4Ref }}" style="position:absolute;left:50%;bottom:11vh;transform:translateX(-50%);color:#2B2723;background:#FBF8F2;padding:5px 9px;font-size:12px;white-space:nowrap;opacity:0">Нажмите и удерживайте, чтобы рассмотреть</div>
+    <div ref="{{ s4bRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Фото букета перед отправкой</span><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(32px,3.9vw,54px);line-height:1.02;letter-spacing:-.015em;color:#1F1B18;text-wrap:pretty">Привезём букет вам в руки в любую точку города.</span><span style="font-size:15px;line-height:1.6;color:#2B2723;max-width:36ch;text-wrap:pretty">Возим по всему городу, цветы приезжают свежими. Перед отправкой присылаем фото букета.</span><div style="display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:14px;color:#1F1B18;border-top:1px solid rgba(43,39,35,.28);padding-top:14px"><span>Самовывоз</span><span>бесплатно</span><span>По городу</span><span></span></div></div>
+    <div ref="{{ s4cRef }}" class="m-sec" style="position:absolute;left:clamp(20px,6vw,96px);top:17vh;max-width:min(520px,84vw);display:flex;flex-direction:column;gap:18px;text-shadow:0 0 6px rgba(250,246,239,.95),0 0 16px rgba(250,246,239,.85);opacity:0"><span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Уход за цветами</span><div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(43,39,35,.28)"><div style="padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Подрезайте стебли раз в 2–3 дня</span></div><div style="padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Срежьте лишнюю листву</span></div><div style="padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Регулярно меняйте воду в вазе</span></div><div style="padding:14px 0;border-bottom:1px solid rgba(43,39,35,.28)"><span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(22px,2.2vw,30px);line-height:1.15;color:#1F1B18">Берегите букет от прямого солнца</span></div></div></div>
 
     <div ref="{{ co0 }}" class="m-co" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
       <span style="width:7px;height:7px;border-radius:50%;background:#2B2723;margin-left:-3.5px"></span><span style="width:44px;height:1px;background:#2B2723"></span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Лён, необработанный</span>
+      <span style="font-size:12px;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Лён, необработанный</span>
     </div>
     <div ref="{{ co1 }}" class="m-co" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
       <span style="width:7px;height:7px;border-radius:50%;background:#2B2723;margin-left:-3.5px"></span><span style="width:44px;height:1px;background:#2B2723"></span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Шёлковая лента, шампань</span>
+      <span style="font-size:12px;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Шёлковая лента, шампань</span>
     </div>
     <div ref="{{ co2 }}" class="m-co" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
       <span style="width:7px;height:7px;border-radius:50%;background:#2B2723;margin-left:-3.5px"></span><span style="width:44px;height:1px;background:#2B2723"></span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Керамика, матовая</span>
+      <span style="font-size:12px;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Керамика, матовая</span>
     </div>
     <div ref="{{ co3 }}" class="m-co" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;opacity:0;will-change:transform">
       <span style="width:7px;height:7px;border-radius:50%;background:#2B2723;margin-left:-3.5px"></span><span style="width:44px;height:1px;background:#2B2723"></span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Кромка лепестка</span>
+      <span style="font-size:12px;background:#FBF8F2;padding:4px 7px;white-space:nowrap">Кромка лепестка</span>
     </div>
 
     <div ref="{{ endRef }}" style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(250,246,239,.94) 0%,rgba(250,246,239,.82) 55%,rgba(250,246,239,.55) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center;padding:24px;opacity:0">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Наш магазин · Our store</span>
+      <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2B2723">Наш магазин</span>
       <span style="font-family:var(--fs-serif);font-weight:var(--fs-serif-w);font-size:clamp(48px,7vw,104px);line-height:.95;letter-spacing:-.02em;color:#1F1B18">Ателье <em>Флёр</em></span>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;pointer-events:auto">
-        
-        <button onClick="{{ copyPromo }}" style="display:flex;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#1F1B18;background:#FBF8F2;border:1px dashed #1F1B18;padding:16px 20px;cursor:pointer" style-hover="border-style:solid"><span>−10% · ПЕРВЫЙ10</span><span style="color:#7A534D">{{ promoLabel }}</span></button>
-      </div>
       <div style="display:flex;justify-content:center;text-align:center;pointer-events:auto">
-        <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4A443E">Время работы</span><span style="font-size:16px;line-height:1.45;color:#1F1B18">Ежедневно с 09:00 до 22:00</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:13px;color:#4A443E">Время работы</span><span style="font-size:16px;line-height:1.45;color:#1F1B18">Ежедневно с 09:00 до 22:00</span></div>
       </div>
     </div>
 
@@ -140,7 +135,7 @@ a{color:#8A5F59;text-underline-offset:4px}a:hover{color:#2B2723}
 class Component extends DCLogic {
   canvasRef = React.createRef(); brandRef = React.createRef(); hint1Ref = React.createRef(); line2Ref = React.createRef();
   s4Ref = React.createRef(); hint4Ref = React.createRef(); endRef = React.createRef();
-  ctaRef = React.createRef(); heroRef = React.createRef(); kickRef = React.createRef(); state = { copied: false };
+  ctaRef = React.createRef(); heroRef = React.createRef(); kickRef = React.createRef();
   phARef = React.createRef(); phBRef = React.createRef();
   veilRef = React.createRef(); roseRef = React.createRef(); s4bRef = React.createRef(); s4cRef = React.createRef();
   co = [React.createRef(), React.createRef(), React.createRef(), React.createRef()];
@@ -155,7 +150,7 @@ class Component extends DCLogic {
     const f = this.fontCfg(), r = document.documentElement.style;
     r.setProperty('--fs-serif', `'${f.serif}', serif`); r.setProperty('--fs-serif-w', String(f.w)); r.setProperty('--fs-sans', `'${f.sans}', sans-serif`);
     this.fs = f;
-    return Promise.all([document.fonts.load(`${f.w} 160px "${f.serif}"`, 'Ателье'), document.fonts.load(`italic ${f.w} 120px "${f.serif}"`, 'Флёр'), document.fonts.load('500 24px "IBM Plex Mono"', 'Ш')]).catch(() => {});
+    return Promise.all([document.fonts.load(`${f.w} 160px "${f.serif}"`, 'Ателье'), document.fonts.load(`italic ${f.w} 120px "${f.serif}"`, 'Флёр')]).catch(() => {});
   }
   componentDidMount() {
     this.alive = true;
@@ -323,8 +318,8 @@ class Component extends DCLogic {
       m.rotation.y = ry;
       return { m, base: new THREE.Vector3(...p), ry, w, h, i };
     });
-    const ph1 = textTex([{ t: 'Свет — первый' }, { t: 'материал.', italic: true }], 220, { w: 1700 });
-    const ph2 = textTex([{ t: 'Остальное —' }, { t: 'руками.', italic: true, color: '#8A5F59' }], 220, { w: 1500 });
+    const ph1 = textTex([{ t: 'Свет — первый' }, { t: 'материал.' }], 220, { w: 1700 });
+    const ph2 = textTex([{ t: 'Остальное —' }, { t: 'руками.' }], 220, { w: 1500 });
     const phr = [plane(sC, ph1, 2.6, 2.6 / ph1.userData.aspect, 0.7, 0.8, -7, { fog: true }), plane(sC, ph2, 2.3, 2.3 / ph2.userData.aspect, -0.5, -0.75, -15.2, { fog: true })];
     const pathC = new THREE.CatmullRomCurve3([[0, 0, 2.3], [0.6, 0.1, -1.8], [-0.4, 0, -6.4], [0.5, 0.2, -11], [-0.3, 0.05, -15.6], [0, -0.12, -19.6]].map((a) => new THREE.Vector3(...a)));
 
@@ -587,9 +582,7 @@ class Component extends DCLogic {
   renderVals() {
     return {
       canvasRef: this.canvasRef, phARef: this.phARef, phBRef: this.phBRef, brandRef: this.brandRef, hint1Ref: this.hint1Ref, line2Ref: this.line2Ref, s4Ref: this.s4Ref, hint4Ref: this.hint4Ref, endRef: this.endRef, veilRef: this.veilRef, ctaRef: this.ctaRef, heroRef: this.heroRef, kickRef: this.kickRef,
-      promoHero: this.state.copied ? 'ПЕРВЫЙ10 скопирован' : '−10% на первый заказ · ПЕРВЫЙ10',
-      promoLabel: this.state.copied ? 'Скопировано' : 'Скопировать',
-      copyPromo: () => { try { navigator.clipboard.writeText('ПЕРВЫЙ10'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this._ct); this._ct = setTimeout(() => this.setState({ copied: false }), 2200); }, roseRef: this.roseRef, s4bRef: this.s4bRef, s4cRef: this.s4cRef,
+      roseRef: this.roseRef, s4bRef: this.s4bRef, s4cRef: this.s4cRef,
       co0: this.co[0], co1: this.co[1], co2: this.co[2], co3: this.co[3],
     };
   }
