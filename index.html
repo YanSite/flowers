@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ателье Флёр — демо-проект цветочного ателье</title>
+<title>Ателье Флёр — Концепт сайта цветочного ателье · Есть что показать</title>
 <meta name="description" content="Демо-проект: иммерсивный сайт цветочного ателье с 3D-камерой, глубиной и покадровой прокруткой.">
 <meta property="og:title" content="Ателье Флёр — демо-проект">
 <meta property="og:description" content="Иммерсивный сайт цветочного ателье: 3D-камера, глубина, покадровая прокрутка.">
@@ -439,7 +439,7 @@ class Component extends DCLogic {
     const beatsAll = [0, 215, 377, 400 + 320 * pcAt(-3.4), 400 + 320 * pcAt(-9.6), 690, 770, 842, 936, 1010];
     let beats = beatsAll;
     let bi = 0, locked = false, lockT = 0, lastW = 0, acc = 0, ty0 = null;
-    const go = (d) => { if (performance.now() - st.twT0 < st.twD * 0.7) return; const n = Math.max(0, Math.min(beats.length - 1, bi + d)); if (n === bi) return; bi = n; st.gT = beats[bi]; locked = true; lockT = performance.now(); acc = 0; };
+    const go = (d) => { if (performance.now() - st.twT0 < st.twD * 0.7) return; const n = Math.max(0, Math.min(beats.length - 1, bi + d)); if (n === bi) return; bi = n; st.gT = beats[bi]; locked = true; lockT = performance.now(); acc = 0; window.dispatchEvent(new CustomEvent('concept:final', { detail: bi === beats.length - 1 })); };
     window.__fsGo = (i) => { bi = Math.max(0, Math.min(beats.length - 1, i)); st.gT = beats[bi]; };
     const onWheel = (e) => {
       if (!snap) return; e.preventDefault();
@@ -614,5 +614,6 @@ class Component extends DCLogic {
   }
 }
 </script>
+<script src="concept-card.js" defer data-category="цветочное ателье" data-tone="light" data-position="bl"></script>
 </body>
 </html>
