@@ -1,0 +1,10 @@
+{
+  "name": "@demo/flowers",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Концепт «Ателье Флёр»: статический сайт, публикуется из зеркала YanSite/flowers.",
+  "scripts": {
+    "dev": "serve -l 4103 --no-clipboard .",
+    "build": "node ../../../tools/demo/check-static.mjs ."
+  }
+}
